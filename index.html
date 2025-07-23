@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMG SYSTEM | Soluciones Integrales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Variables */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            color: #333;
+            background: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            margin-left: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Barra de Navegación */
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .menu li {
+            margin: 0 10px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 1rem;
+            padding: 5px 10px;
+        }
+
+        .menu a:hover {
+            color: #007bff;
+        }
+
+        .menu .btn {
+            background: var(--primary-color);
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        .menu .btn:hover {
+            background: #0069d9;
+            color: white;
+        }
+
+        /* Navbar al hacer scroll */
+        #navbar.scrolled {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        #navbar.scrolled .menu a {
+            color: #333;
+        }
+
+        #navbar.scrolled .menu a:hover {
+            color: var(--primary-color);
+        }
+
+        #navbar .logo img,
+        #navbar.scrolled .logo img {
+            filter: none !important;
+            opacity: 1 !important;
+        }
+        #navbar.scrolled .menu .btn {
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: url('hero-image.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Debajo del contenido */
+            background: rgba(255, 255, 255, 0.10); /* Leve oscurecimiento para mejor contraste */
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 1; /* Encima de las partículas */
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Alinea el contenido a la derecha */
+        }
+
+        .hero-content {
+            max-width: 600px;
+            padding: 40px;
+            text-align: right; /* Texto alineado a la derecha */
+            color: white; /* Color de texto blanco */
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: flex-end; /* Botones alineados a la derecha */
+        }
+
+        /* Sección Bienvenida */
+        .welcome {
+            background: white;
+            color: #333;
+            padding: 100px 0;
+        }
+
+        .welcome h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .welcome p {
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+
+        /* Sección Servicios - MODIFICADA */
+        .services {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: 1fr 300px 1fr; /* Tres columnas: izquierda, centro, derecha */
+            gap: 40px;
+            align-items: start;
+        }
+
+        .services-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .services-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .services-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .left-column .services-item {
+            justify-content: flex-end;
+            text-align: right;
+            flex-direction: row-reverse;
+        }
+
+        .right-column .services-item {
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        .services-icon {
+            margin: 0 15px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer; /* Nuevo: cursor pointer para indicar que es clickeable */
+        }
+
+        .services-icon img {
+            width: 100%;
+            height: auto;
+        }
+
+        .services-center {
+            text-align: center;
+            margin: 0;
+        }
+
+        .services-center img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+
+        /* Sección Portafolio - MODIFICADA */
+        .portfolio {
+    background: url('hero-image.png') center center fixed;
+    background-size: cover;
+    position: relative;
+    color: white;
+}
+.portfolio::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7); /* Oscurece para mejor contraste */
+    z-index: 0;
+}
+.portfolio > .container {
+    position: relative;
+    z-index: 1;
+}
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-img-container {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .portfolio-img-container:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-buttons {
+            padding: 15px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .portfolio-btn {
+            color: var(--primary-color);
+            background: none;
+            border: 2px solid var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .portfolio-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Testimonios */
+        .testimonials {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .testimonial-content {
+            margin-bottom: 30px;
+        }
+
+        .testimonial-content p {
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .testimonial-content p::before,
+        .testimonial-content p::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-content p::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .testimonial-content p::after {
+            bottom: -40px;
+            right: -20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonial-author img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .testimonial-author h4 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-author span {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        /* Sección Estadísticas */
+        .stats {
+            padding: 80px 0;
+            background: url('hero-image.png') fixed center center;
+            background-size: cover;
+            position: relative;
+            color: white;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .stats .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 40px 20px;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .counter {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            color: white;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Sección Instaladores */
+        .installers {
+            padding: 100px 0;
+            background: white;
+        }
+
+        /* Estilos Swiper para instaladores */
+        .installers-swiper {
+            padding: 20px 0 40px;
+        }
+        
+        .installer-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            height: auto;
+            margin: 0 10px;
+        }
+
+        .installer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .installer-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .installer-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .installer-card p {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 1000px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 80px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            color: var(--primary-color);
+            min-width: 20px;
+        }
+
+        .newsletter p {
+            opacity: 0.8;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .newsletter form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter input {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+        }
+
+        .newsletter .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .newsletter .btn:hover {
+            background: #0069d9;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive */
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 992px) {
+            .menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                flex-direction: column;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .menu li {
+                margin: 0 10px;
+            }
+
+            .menu a {
+                color: #333;
+                padding: 10px 0;
+                display: block;
+            }
+
+            .menu .btn {
+                color: white;
+                display: inline-block;
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-content {
+                text-align: center;
+                padding: 30px;
+                margin: 20px;
+            }
+            
+            .hero-container {
+                justify-content: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                padding-right: 0;
+            }
+
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+
+            .services-column {
+                gap: 20px;
+            }
+
+            .services-item {
+                flex-direction: row !important;
+                justify-content: center !important;
+                text-align: center !important;
+            }
+
+            .services-icon {
+                margin: 0 15px 0 0 !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+            
+            .btn, .btn-outline {
+                width: 100%;
+                max-width: 300px;
+                margin: 5px 0;
+            }
+
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="Logo KMG SYSTEM">
+            </div>
+            <ul class="menu">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#installers">Instaladores</a></li>
+                <li><a href="#products">Productos</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Hero con imagen de fondo y partículas -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Nos esforzamos día a día para <span>potenciar</span> tu negocio</h1>
+                <p>Soluciones tecnológicas que impulsan tu crecimiento.</p>
+                <div class="hero-buttons">
+                    <a href="https://bit.ly/VentasKMG" class="btn" target="_blank">Solicita Información</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Servicios - MODIFICADA -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Servicios</h2>
+            <div class="services-container">
+                <div class="services-column left-column">
+                    <div class="services-item">
+                        <div class="services-icon" data-image="2_Mantenimiento.jpg">
+                            <img src="soporte.gif" alt="Soporte" class="services-gif">
+                        </div>
+                        <div class="services-content">
+                            <h3>Soporte Tecnico y Mantenimiento de Equipos</h3>
+                            <p>Recibe ayuda de los verdaderos expertos de Contpaqi.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="services-item">
+                        <div class="services-icon" data-image="3_Asesoría.jpg">
+                            <img src="capacitacion.gif" alt="Capacitacion" class="services-gif">
+                        </div>
+                        <div class="services-content">
+                            <h3>Asesoria personalizada y capacitacion</h3>
+                            <p>Optimiza procesos de tu negocio con guía de profesionales, adquiriendo nuevos conocimientos.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="services-item">
+                        <div class="services-icon" data-image="4_Formatos.jpg">
+                            <img src="Reporte.gif" alt="Formatos" class="services-gif">
+                        </div>
+                        <div class="services-content">
+                            <h3>Personalización de Formatos y Reportes</h3>
+                            <p>Hacemos unicos tus formatos y desarrollamos mas reportes en sistemas Contpaqi.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="services-center">
+                    <img src="why-us-center.jpg" alt="KMG System">
+                </div>
+                
+                <div class="services-column right-column">
+                    <div class="services-item">
+                        <div class="services-icon" data-image="8_Software.jpg">
+                            <img src="Venta_Software.gif" alt="Venta Equipo" class="services-gif">
+                        </div>
+                        <div class="services-content">
+                            <h3>Ventas de Equipo y Software</h3>
+                            <p>Manten actualizado tus equipos con software de vanguardia, perifericos innovadores, etc.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="services-item">
+                        <div class="services-icon" data-image="6_Redes.jpg">
+                            <img src="Redes.gif" alt="Redes" class="services-gif">
+                        </div>
+                        <div class="services-content">
+                            <h3>Redes y Vigilancia</h3>
+                            <p>Mejora la conectividad de la red de equipos de trabajo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="services-item">
+                        <div class="services-icon" data-image="Confianza.gif">
+                            <img src="Promocion.gif" alt="Confianza" class="services-gif">
+                        </div>
+                        <div class="services-content">
+                            <h3>Promociones</h3>
+                            <p>Descubre las promociones que tenemos para tí, solo este mes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Portafolio - MODIFICADA -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Nuestro Portafolio</h2>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="category1">Contabilidad</button>
+                <button class="filter-btn" data-filter="category2">Nominas</button>
+                <button class="filter-btn" data-filter="category3">Factura Electronica</button>
+                <button class="filter-btn" data-filter="category4">Administra tu negocio</button>
+                <button class="filter-btn" data-filter="category5">Potencializa tu negocio</button>
+                <button class="filter-btn" data-filter="category6">Recursos Humanos</button>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Item 1 Contabilidad con dos botones -->
+                <div class="portfolio-item" data-category="category1">
+                    <div class="portfolio-img-container">
+                        <img src="Contabilidad.png" alt="Proyecto 1" class="portfolio-img view-image" data-image="Client1.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/PBf5tzobbkU">Contabilidad</button>
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/WQrPq8Pc_Xc">Contabiliza</button>
+                    </div>
+                </div>
+                <!-- Item 2 XML -->
+                <div class="portfolio-item" data-category="category1">
+                    <div class="portfolio-img-container">
+                        <img src="Contabilidad.png" alt="Proyecto 2" class="portfolio-img view-image" data-image="portfolio2.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/1Ebr6thH3Qs">XML En Línea +</button>
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/sdQvwJGV2PM">UNITY CFDI</button>
+                    </div>
+                </div>
+                <!-- Item 3 Nominas -->
+                <div class="portfolio-item" data-category="category2">
+                    <div class="portfolio-img-container">
+                        <img src="Nominas.png" alt="Proyecto 3" class="portfolio-img view-image" data-image="portfolio3.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/LjNl_fgJqLw">Nominas</button>
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/3GFI3TludU4">Personia</button>
+                    </div>
+                </div>
+                <!-- Item 4 Factura Electronica -->
+                <div class="portfolio-item" data-category="category3">
+                    <div class="portfolio-img-container">
+                        <img src="Factura_Electronica.png" alt="Proyecto 4" class="portfolio-img view-image" data-image="portfolio4.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/5vJwKgcuYGw">ContPAQi Vende</button>
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/DQj_YpZhbK4">ContPAQi Factura Electronica</button>
+                    </div>
+                </div>
+                <!-- Item 5 Comercial Premium / Pro-->
+                <div class="portfolio-item" data-category="category4">
+                    <div class="portfolio-img-container">
+                        <img src="Administra.png" alt="Proyecto 5" class="portfolio-img view-image" data-image="portfolio5.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/wvqa-_BHtj0">Comercial Premium</button>
+                        <button class="portfolio-btn view-video" data-video="https://youtu.be/W9bZFB6IDek">Comercial Pro</button>
+                    </div>
+                </div>
+                <!-- Item 6 Cobra / QR / Timbra / Escritorio Virtual-->
+                <div class="portfolio-item" data-category="category5">
+                    <div class="portfolio-img-container">
+                        <img src="Administra.png" alt="Proyecto 6" class="portfolio-img view-image" data-image="portfolio6.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://www.youtube.com/embed/VIDEO_ID_6">Contpaqi Cobra</button>
+                    </div>
+                </div>
+                <!-- Item 7 Cobra / QR / Timbra / Escritorio Virtual-->
+                <div class="portfolio-item" data-category="category5">
+                    <div class="portfolio-img-container">
+                        <img src="Administra.png" alt="Proyecto 7" class="portfolio-img view-image" data-image="portfolio7.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://www.youtube.com/embed/VIDEO_ID_7">Contpaqi QR</button>
+                    </div>
+                </div>
+                <!-- Item 8 Cobra / QR / Timbra / Escritorio Virtual -->
+                <div class="portfolio-item" data-category="category5">
+                    <div class="portfolio-img-container">
+                        <img src="Administra.png" alt="Proyecto 8" class="portfolio-img view-image" data-image="portfolio8.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://www.youtube.com/embed/VIDEO_ID_8">Contpaqi Timbra</button>
+                    </div>
+                </div>
+                <!-- Item 9 Cobra / QR / Timbra / Escritorio Virtual -->
+                <div class="portfolio-item" data-category="category5">
+                    <div class="portfolio-img-container">
+                        <img src="Administra.png" alt="Proyecto 8" class="portfolio-img view-image" data-image="portfolio8.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://www.youtube.com/embed/VIDEO_ID_8">Contpaqi Escritorio Virtual</button>
+                    </div>
+                </div>
+                <!-- Item 10 Kursa / Evalua / Colabora -->
+                <div class="portfolio-item" data-category="category6">
+                    <div class="portfolio-img-container">
+                        <img src="Administra.png" alt="Proyecto 8" class="portfolio-img view-image" data-image="portfolio8.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://www.youtube.com/embed/VIDEO_ID_8">Contpaqi Kursa</button>
+                    </div>
+                </div>
+                <!-- Item 10 Kursa / Evalua / Colabora -->
+                <div class="portfolio-item" data-category="category6">
+                    <div class="portfolio-img-container">
+                        <img src="Administra.png" alt="Proyecto 8" class="portfolio-img view-image" data-image="portfolio8.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://www.youtube.com/embed/VIDEO_ID_8">Contpaqi Evalua</button>
+                    </div>
+                </div>
+                <!-- Item 10 Kursa / Evalua / Colabora -->
+                <div class="portfolio-item" data-category="category6">
+                    <div class="portfolio-img-container">
+                        <img src="Administra.png" alt="Proyecto 8" class="portfolio-img view-image" data-image="portfolio8.jpg">
+                    </div>
+                    <div class="portfolio-buttons">
+                        <button class="portfolio-btn view-video" data-video="https://www.youtube.com/embed/VIDEO_ID_8">Contpaqi Colabora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para videos -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="video-container">
+                <iframe id="portfolioVideo" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para imágenes de servicios -->
+    <div id="imageModal" class="image-modal">
+        <span class="close-image-modal">&times;</span>
+        <img class="image-modal-content" id="expandedImg">
+    </div>
+
+    <!-- Modal para imágenes del portafolio -->
+    <div id="portfolioImageModal" class="image-modal">
+        <span class="close-portfolio-image-modal">&times;</span>
+        <img class="image-modal-content" id="expandedPortfolioImg">
+    </div>
+
+    <!-- Sección Testimonios -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Excelente servicio y atención. Cumplieron con todo lo prometido y el resultado superó nuestras expectativas."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="client1.jpg" alt="Cliente 1">
+                        <div>
+                            <h4>Juan Pérez</h4>
+                            <span>CEO, Empresa XYZ</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Más testimonios aquí -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Estadísticas -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-briefcase"></i>
+                    <div class="counter" data-target="250">0</div>
+                    <p>Proyectos Completados</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <div class="counter" data-target="120">0</div>
+                    <p>Clientes Satisfechos</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="counter" data-target="15">0</div>
+                    <p>Años de Experiencia</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-trophy"></i>
+                    <div class="counter" data-target="50">0</div>
+                    <p>Premios Ganados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Instaladores -->
+    <section id="installers" class="installers">
+        <div class="container">
+            <h2 class="section-title">Instaladores</h2>
+            <div class="swiper installers-swiper">
+                <div class="swiper-wrapper">
+                    <!-- Instalador 1 -->
+                    <div class="swiper-slide">
+                        <div class="installer-card">
+                            <div class="installer-icon">
+                                <img src="Icon_KMG_Bancos.png" alt="Contpaqi Bancos" class="installer-img">
+                            </div>
+                            <h3>Contpaqi Bancos</h3>
+                            <p>Versión 18.3.1.</p>
+                            <a href="https://descargas.contpaqi.com/repositorios/fls/evaluacion/CONTPAQi/sistema/18.3.1/CONTABILIDAD_BANCOS_1831_890.zip" class="btn" download>Descargar</a>
+                        </div>
+                    </div>
+                    <!-- Instalador 2 -->
+                    <div class="swiper-slide">
+                        <div class="installer-card">
+                            <div class="installer-icon">
+                                <img src="Icon_KMG_Contabilidad.png" alt="Contpaqi Bancos" class="installer-img">
+                            </div>
+                            <h3>Contpaqi Contabilidad</h3>
+                            <p>Versión 18.3.1.</p>
+                            <a href="https://descargas.contpaqi.com/repositorios/fls/evaluacion/CONTPAQi/sistema/18.3.1/CONTABILIDAD_BANCOS_1831_890.zip" class="btn" download>Descargar</a>
+                        </div>
+                    </div>
+                    <!-- Instalador 3 -->
+                    <div class="swiper-slide">
+                        <div class="installer-card">
+                            <div class="installer-icon">
+                                <img src="Icon_KMG_Premium.png" alt="Contpaqi Bancos" class="installer-img">
+                            </div>
+                            <h3>Comercial Premium</h3>
+                            <p>Versión 11.2.1.</p>
+                            <a href="https://descargas.contpaqi.com/repositorios/fls/evaluacion/CONTPAQi_Comercial/Sistemas/11.2.1/CTiComercialPremium_1121.zip" class="btn" download>Descargar</a>
+                        </div>
+                    </div>
+                    <!-- Instalador 4 -->
+                    <div class="swiper-slide">
+                        <div class="installer-card">
+                            <div class="installer-icon">
+                                <img src="Icon_KMG_Pro.png" alt="Contpaqi Bancos" class="installer-img">
+                            </div>
+                            <h3>CONTPAQi Comercial® Start/Pro</h3>
+                            <p>Versión 10.0.0</p>
+                            <a href="https://descargas.contpaqi.com/repositorios/fls/evaluacion/CONTPAQi_Comercial_start_pro/sistemas/10.0.0/CONTPAQi_Comercial_Start_Pro_1000.zip" class="btn" download>Descargar</a>
+                        </div>
+                    </div>
+                    <!-- Instalador 5 -->
+                    <div class="swiper-slide">
+                        <div class="installer-card">
+                            <div class="installer-icon">
+                                <img src="Icon_KMG_Factura.png" alt="Contpaqi Bancos" class="installer-img">
+                            </div>
+                            <h3>CONTPAQi Factura Electrónica®</h3>
+                            <p>Versión 13.1.1.</p>
+                            <a href="https://descargas.contpaqi.com/repositorios/fls/evaluacion/FactElect/Sistema/13.1.1/CTi_Factura_Electronica_1311.zip" class="btn" download>Descargar</a>
+                        </div>
+                    </div>
+                    <!-- Instalador 6 -->
+                    <div class="swiper-slide">
+                        <div class="installer-card">
+                            <div class="installer-icon">
+                                <img src="Icon_KMG_Nominas.png" alt="Contpaqi Bancos" class="installer-img">
+                            </div>
+                            <h3>CONTPAQi Nóminas®</h3>
+                            <p>Versión 18.1.1.</p>
+                            <a href="https://descargas.contpaqi.com/repositorios/fls/evaluacion/Nominas/Sistema/18.1.1/CTi_NOMINAS_1811.zip" class="btn" download>Descargar</a>
+                        </div>
+                    </div>
+                    <!-- Instalador 7 -->
+                    <div class="swiper-slide">
+                        <div class="installer-card">
+                            <div class="installer-icon">
+                                <img src="Icon_KMG_XML.png" alt="Contpaqi Bancos" class="installer-img">
+                            </div>
+                            <h3>CONTPAQi XML en línea+®</h3>
+                            <p> versión 6.2.3.</p>
+                            <a href="https://descargas.contpaqi.com/repositorios/fls/evaluacion/XMLlinea/Sistema/6.2.3/CTi_XML_Linea_623.zip" class="btn" download>Descargar</a>
+                        </div>
+                    </div>
+                    <!-- Instalador 8 -->
+                    <div class="swiper-slide">
+                        <div class="installer-card">
+                            <div class="installer-icon">
+                                <img src="Icon_KMG_SQL.png" alt="Contpaqi Bancos" class="installer-img">
+                            </div>
+                            <h3>SQL SERVER 2022 Express</h3>
+                            <p>Gestor de Base de Datos.</p>
+                            <a href="https://download.microsoft.com/download/5/1/4/5145fe04-4d30-4b85-b0d1-39533663a2f1/SQL2022-SSEI-Expr.exe" class="btn" download>Descargar</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Agregar paginación y flechas de navegación -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Productos (movida después de instaladores) -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Productos</h2>
+            <div class="products-grid">
+                <!-- Producto 1 -->
+                <a href="contabilidad.html" class="product-card">
+                    <div class="product-icon">
+                        <img src="Contabilidad.gif" alt="Contabilidad" class="services-gif">
+                    </div>
+                    <h3>Contabilidad</h3>
+                    <p>Recibe ayuda de los verdaderos expertos en Contpaqi.</p>
+                </a>
+                
+                <!-- Producto 2 -->
+                <a href="nomina.html" class="product-card">
+                    <div class="product-icon">
+                        <img src="Nominas.gif" alt="Nominas" class="services-gif">
+                    </div>
+                    <h3>Nomina</h3>
+                    <p>Optimiza procesos de tu negocio con guía de profesionales, adquiriendo nuevos conocimientos.</p>
+                </a>
+                
+                <!-- Producto 3 -->
+                <a href="factura-electronica.html" class="product-card">
+                    <div class="product-icon">
+                        <img src="Factura.gif" alt="Factura" class="services-gif">
+                    </div>
+                    <h3>Factura Electronica</h3>
+                    <p>Hacemos unicos tus formatos y desarrollamos más reportes en sistemas Contpaqi</p>
+                </a>
+                
+                <!-- Producto 4 -->
+                <a href="administracion.html" class="product-card">
+                    <div class="product-icon">
+                        <img src="Administracion.gif" alt="Administracion" class="services-gif">
+                    </div>
+                    <h3>Administra tu negocio</h3>
+                    <p>Mantén actualizado tus equipos con software de vanguardia, perifericos innovadores, etc.</p>
+                </a>
+                
+                <!-- Producto 5 -->
+                <a href="potencializa.html" class="product-card">
+                    <div class="product-icon">
+                        <img src="Negocio.gif" alt="Negocio" class="services-gif">
+                    </div>
+                    <h3>Potencializa tu negocio</h3>
+                    <p>Soluciones integrales para la conectividad y protección de tu empresa.</p>
+                </a>
+                
+                <!-- Producto 6 -->
+                <a href="recursos-humanos.html" class="product-card">
+                    <div class="product-icon">
+                        <img src="RH.gif" alt="RH" class="services-gif">
+                    </div>
+                    <h3>Recursos Humanos</h3>
+                    <p>Accede a tus datos y sistemas desde cualquier lugar, de forma segura.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#services">Servicios</a></li>
+                        <li><a href="#portfolio">Portafolio</a></li>
+                        <li><a href="#testimonials">Testimonios</a></li>
+                        <li><a href="#installers">Instaladores</a></li>
+                        <li><a href="#products">Productos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Puebla, Puebla, Mexico</li>
+                        <li><i class="fas fa-phone"></i> +52 2223013030</li>
+                        <li><i class="fas fa-envelope"></i> ventas@kmgsystem.com.mx</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Boletín Informativo</h4>
+                    <p>Suscríbete para recibir nuestras últimas noticias y ofertas.</p>
+                    <div class="newsletter">
+                        <form>
+                            <input type="email" placeholder="Tu correo electrónico" required>
+                            <button type="submit" class="btn">Suscribirse</button>
+                        </form>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/kmgsystem" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/kmgsystem" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@kmgsystem" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://twitter.com/kmgsystem" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 KMG SYSTEM Soluciones Integrales. Todos los derechos reservados.
+                </div>
+                <div class="footer-links">
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+
+    <!-- Scripts -->
+    <script src="particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Configuración de partículas
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 60,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#ffffff' // Color blanco para las partículas
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 2,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.3,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 120,
+                    color: '#ffffff', // Color blanco para las conexiones
+                    opacity: 0.3,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Cambiar navbar al hacer scroll
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Menú móvil
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            
+            // Cambiar icono
+            const icon = menuToggle.querySelector('i');
+            if (menu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Animación al desplazar
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Funcionalidad del filtro de portfolio
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        // Ocultar todos los items excepto los de category1 (Contabilidad)
+        portfolioItems.forEach(item => {
+            if (item.dataset.category !== 'category1') {
+                item.style.display = 'none';
+            }
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover clase activa de todos los botones
+                filterBtns.forEach(b => b.classList.remove('active'));
+                
+                // Agregar clase activa al botón clickeado
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                // Filtrar elementos del portfolio
+                portfolioItems.forEach(item => {
+                    if (filter === 'category1' && item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Funcionalidad del carrusel de testimonios
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => {
+                testimonial.style.display = 'none';
+            });
+            
+            testimonials[index].style.display = 'block';
+        }
+
+        // Cambiar testimonio cada 5 segundos
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+
+        // Mostrar el primer testimonio al cargar
+        showTestimonial(0);
+
+        // Validación básica del formulario
+        const contactForm = document.querySelector('.contact-form form');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Validación simple - en una implementación real se haría más completa
+                const inputs = contactForm.querySelectorAll('input, textarea, select');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (input.required && !input.value.trim()) {
+                        isValid = false;
+                        input.style.borderColor = 'red';
+                    } else {
+                        input.style.borderColor = '#ddd';
+                    }
+                });
+                
+                if (isValid) {
+                    alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+                    contactForm.reset();
+                } else {
+                    alert('Por favor completa todos los campos requeridos.');
+                }
+            });
+        }
+
+        // Modal para videos del portafolio
+        const modal = document.getElementById('videoModal');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const videoFrame = document.getElementById('portfolioVideo');
+        const portfolioBtns = document.querySelectorAll('.portfolio-btn');
+
+        portfolioBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoUrl = btn.getAttribute('data-video');
+                videoFrame.src = videoUrl;
+                modal.style.display = 'block';
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            videoFrame.src = '';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                videoFrame.src = '';
+            }
+        });
+
+        // Modal para imágenes de servicios
+        const imageModal = document.getElementById('imageModal');
+        const closeImageModal = document.querySelector('.close-image-modal');
+        const expandedImg = document.getElementById('expandedImg');
+        const serviceIcons = document.querySelectorAll('.services-icon');
+
+        serviceIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                const imageSrc = icon.getAttribute('data-image');
+                expandedImg.src = imageSrc;
+                imageModal.style.display = 'block';
+            });
+        });
+
+        closeImageModal.addEventListener('click', () => {
+            imageModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                imageModal.style.display = 'none';
+            }
+        });
+
+        // Modal para imágenes del portafolio
+        const portfolioImageModal = document.getElementById('portfolioImageModal');
+        const closePortfolioImageModal = document.querySelector('.close-portfolio-image-modal');
+        const expandedPortfolioImg = document.getElementById('expandedPortfolioImg');
+        const portfolioImages = document.querySelectorAll('.portfolio-img.view-image');
+
+        portfolioImages.forEach(img => {
+            img.addEventListener('click', () => {
+                const imageSrc = img.getAttribute('data-image');
+                expandedPortfolioImg.src = imageSrc;
+                portfolioImageModal.style.display = 'block';
+            });
+        });
+
+        closePortfolioImageModal.addEventListener('click', () => {
+            portfolioImageModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === portfolioImageModal) {
+                portfolioImageModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
